@@ -11,6 +11,7 @@
     <groupId>com.wzy</groupId>
     <artifactId>miaosha7</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>miaosha7</name>
     <description>Demo project for Spring Boot</description>
 
@@ -95,6 +96,13 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+
+        <!--rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

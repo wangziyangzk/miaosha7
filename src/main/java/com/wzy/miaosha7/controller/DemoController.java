@@ -1,6 +1,7 @@
 package com.wzy.miaosha7.controller;
 
 import com.wzy.miaosha7.domain.User;
+import com.wzy.miaosha7.rabbitmq.MQSender;
 import com.wzy.miaosha7.result.Result;
 import com.wzy.miaosha7.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class DemoController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MQSender mqSender;
 
     @RequestMapping("/demo")
     public String demo(){
@@ -37,5 +41,12 @@ public class DemoController {
     public Result<Boolean> dbtx() {
         userService.tx();
         return Result.success(true);
+    }
+
+    @RequestMapping("/mq")
+    @ResponseBody
+    public Result<String> mq() {
+        mqSender.send("hello,world");
+        return Result.success("hello,world");
     }
 }
