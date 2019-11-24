@@ -22,6 +22,12 @@ public class MQConfig {
     public static final String FANOUT_EXCHANGE = "fanout_exchange";
     public static final String Headers_EXCHANGE = "headers_exchange";
 
+    public static final String MIAOSHA_QUENE = "miaosha_quene";
+
+    @Bean
+    public Queue miaoshaQuene() {
+        return new Queue(MIAOSHA_QUENE,true);
+    }
     /*
      **  Direct交换机模式
      */

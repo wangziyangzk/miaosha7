@@ -18,17 +18,22 @@ public class MQSender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    /*
+    public void sendMiaoshaMessage(MiaoshaMessage msg) {
+        String msgStr = msg.toString();
+        log.info("send message" + msg);
+        amqpTemplate.convertAndSend(MIAOSHA_QUENE,msgStr);
+    }
+ /*   *//*
     **  Direct交换机模式
-     */
+     *//*
     public void send(Object message) {
         String strMessage = message.toString();
         amqpTemplate.convertAndSend(Quene,strMessage);
     }
 
-    /*
+    *//*
     ** Topic交换机模式
-     */
+     *//*
     public void sendTopic(Object message) {
         String msg = message.toString();
         log.info("sendTopicMsg" + msg);
@@ -36,17 +41,17 @@ public class MQSender {
         amqpTemplate.convertAndSend(TOPIC_EXCHANGE,ROUTING_KEY1,msg+"2");
     }
 
-    /*
+    *//*
     ** Fanout交换机模式
-     */
+     *//*
     public void sendFanout(Object message) {
         String msg = message.toString();
         amqpTemplate.convertAndSend(FANOUT_EXCHANGE,"",msg+ "1");
     }
 
-    /*
+    *//*
     ** Header模式
-     */
+     *//*
     public void sendHeader(Object message) {
         String msg = message.toString();
         MessageProperties messageProperties = new MessageProperties();
@@ -54,5 +59,5 @@ public class MQSender {
         messageProperties.setHeader("header2","value2");
         Message obj = new Message(msg.getBytes(),messageProperties);
         amqpTemplate.convertAndSend(Headers_EXCHANGE, HEADER_QUENE,obj);
-    }
+    }*/
 }
